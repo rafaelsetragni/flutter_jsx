@@ -95,6 +95,35 @@ class _SandboxPage extends State<SandboxPage> {
                     padding: EdgeInsets.only(bottom: 20),
                     children: <Widget>[
 
+                      Container(
+                        margin: EdgeInsets.all(10.0),
+                        width: double.infinity,
+                        color: hilightColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            RichText(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                  style: TextStyle(color: Colors.black),
+                                  children: [
+                                    TextSpan(text: 'test1')
+                                  ]
+                              ),
+                            ),
+                            RichText(
+                              textAlign: TextAlign.right,
+                              text: TextSpan(
+                                  style: TextStyle(color: Colors.black),
+                                  children: [
+                                    TextSpan(text: 'test2')
+                                  ]
+                              ),
+                            )
+                          ]
+                        ),
+                      ),
+
                       JSX(
                         'R\$ <b>99</b>,00',
                         stylesheet: {

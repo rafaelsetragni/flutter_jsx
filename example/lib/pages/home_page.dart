@@ -43,32 +43,30 @@ class _HomePage extends State<HomePage> {
                       ResponsiveCol(
                         children: [
                           JSX(
-                            '<div>'
-                                '<Title><h1><Logo/></h1><h6>for <i>Flutter</i></h6></Title>'
-                                '<Wow/>'
-                                '<br><br>'
-                                '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-                                '<br><br>'
-                                '<p>Source code:</p>'
-                                '<code>'+
+                            '<Title><h1><Logo/></h1><h6>for <i>Flutter</i></h6></Title>'
+                            '<Wow/>'
+                            '<br><br>'
+                            '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
+                            '<br><br>'
+                            '<p>Source code:</p>'
+                            '<code>'+
 """
 JSX(
-  '<div>'
-    '<h1><Logo/><span> for <i>Flutter</i></span></h1>'
-    '<Wow/>'
-    '<br><br>'
-    '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-    '<br><br>'
-    '<p>Source code:</p>'
-    '<code><\\/code>'
-  '</div>'
+'<div>'
+'<h1><Logo/><span> for <i>Flutter</i></span></h1>'
+'<Wow/>'
+'<br><br>'
+'<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
+'<br><br>'
+'<p>Source code:</p>'
+'<code><\\/code>'
+'</div>'
 );
 """
-                                +'</code>'
-                                '<p>You can also personalize a simple stylesheet using the class '
-                                '<pre>JSXStylehseet</pre> for each specific element or replace a specific tag '
-                                ' by entire Widget using the property <pre>widgets</pre></p>'
-                            '</div>',
+                            +'</code>'
+                            '<p>You can also personalize a simple stylesheet using the class '
+                            '<pre>JSXStylehseet</pre> for each specific element or replace a specific tag '
+                            ' by entire Widget using the property <pre>widgets</pre></p>',
                             display: DisplayLine.block,
                             padding: EdgeInsets.only(bottom: 10),
                             widgets: {
@@ -106,26 +104,25 @@ JSX(
                             },
                             stylesheet: {
                               'code': JSXStylesheet(
-                                padding: EdgeInsets.all(10.0),
-                                margin: EdgeInsets.symmetric(vertical: 20)
+                                  padding: EdgeInsets.all(10.0),
+                                  margin: EdgeInsets.symmetric(vertical: 20)
                               ),
                               'Wow': JSXStylesheet(
-                                width: 150,
-                                height: 150,
+                                  width: 150,
                                   boxDecoration: BoxDecoration(color: Colors.blue),
-                                displayLine: DisplayLine.block
+                                  displayLine: DisplayLine.block
                               ),
                               'Title': JSXStylesheet(
-                                width: 150,
-                                height: 150,
-                                displayLine: DisplayLine.inline,
-                                alignment: Alignment.center
+                                  width: 350,
+                                  displayLine: DisplayLine.inline,
+                                  alignment: Alignment.center
                               ),
                               'h1': JSXStylesheet(
-                                displayLine: DisplayLine.inline
+                                  displayLine: DisplayLine.inline,
                               ),
                               'h6': JSXStylesheet(
-                                textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
+                                  boxDecoration: BoxDecoration(color: Colors.blue),
+                                  textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
                               ),
                             },
                             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20)

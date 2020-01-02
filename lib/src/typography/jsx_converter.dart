@@ -62,7 +62,8 @@ class JSXConverter {
       {@required String html,
       bool renderNewLines = false,
       Map<String, JSXStylesheet> customStylesheet = const {},
-      Map<String, Widget> widgets = const {}}) {
+      Map<String, Widget> widgets = const {}}
+  ){
     stylesheet = customStylesheet;
     this.widgets = widgets;
 
@@ -229,15 +230,15 @@ class JSXConverter {
   /// APPLIES THE STYLESHEET TO THE SPAN OBJECT
   @visibleForTesting
   InlineSpan getSpanElement(JSXNodeElement element, List<InlineSpan> children,
-      JSXStylesheet lastStyle) {
+      JSXStylesheet lastStyle){
     InlineSpan span = children.length == 1
         ? children[0]
-        : TextSpan(
-            style: lastStyle?.textStyle ?? TextStyle(), children: children);
+        : TextSpan( style: lastStyle?.textStyle ?? TextStyle(), children: children );
 
     JSXStylesheet localStylesheet = applyHtmlAttributes(element, lastStyle);
 
     if (lastStyle != null && span != null) {
+
       RichText richText = RichText(
         softWrap: true,
         textAlign: localStylesheet.textAlign ?? TextAlign.left,
@@ -246,15 +247,28 @@ class JSXConverter {
 
       Widget widget = richText;
 
+      if (
+        localStylesheet.mainAxisAlignment != null ||
+        localStylesheet.crossAxisAlignment != null
+      ){
+        widget = Row(
+            mainAxisAlignment: localStylesheet.mainAxisAlignment,
+            crossAxisAlignment: localStylesheet.crossAxisAlignment,
+            children: <Widget>[
+              widget
+            ]
+        );
+      }
+
       if (localStylesheet.width != null ||
           localStylesheet.height != null ||
           localStylesheet.margin != null ||
           localStylesheet.padding != null ||
           localStylesheet.boxDecoration != null ||
-          localStylesheet.mainAxisAlignment != null ||
-          localStylesheet.crossAxisAlignment != null ||
+          localStylesheet.alignment != null ||
           localStylesheet.displayLine == DisplayLine.block) {
         widget = Container(
+            alignment: localStylesheet.alignment,
             width: localStylesheet.width ??
                 (localStylesheet.displayLine == DisplayLine.block
                     ? double.infinity
