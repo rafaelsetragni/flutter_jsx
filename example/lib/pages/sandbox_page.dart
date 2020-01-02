@@ -11,13 +11,13 @@ class SandboxPage extends StatefulWidget {
 class _SandboxPage extends State<SandboxPage> {
 
   bool highlight, displayInline;
-  DisplayStyle displayStyle;
+  DisplayLine displayLine;
 
   @override
   void initState() {
     highlight = false;
     displayInline = false;
-    displayStyle = DisplayStyle.block;
+    displayLine = DisplayLine.block;
     super.initState();
   }
 
@@ -70,7 +70,7 @@ class _SandboxPage extends State<SandboxPage> {
                             onChanged: (selected){
                               setState(() {
                                 displayInline = selected;
-                                displayStyle = selected ? DisplayStyle.inline : DisplayStyle.block;
+                                displayLine = selected ? DisplayLine.inline : DisplayLine.block;
                               });
                             }
                         ),
@@ -106,7 +106,7 @@ class _SandboxPage extends State<SandboxPage> {
                         },
                         margin: EdgeInsets.all(10.0),
                         backgroundColor: hilightColor,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
 
                       JSX(
@@ -120,7 +120,7 @@ class _SandboxPage extends State<SandboxPage> {
                         },
                         margin: EdgeInsets.all(10.0),
                         backgroundColor: hilightColor,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
 
                     ],

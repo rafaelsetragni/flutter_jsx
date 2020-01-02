@@ -43,27 +43,23 @@ class JSX extends StatelessWidget {
   final TextStyle textStyle;
 
   /// Determines if the text element should occupy all line or not
-  final DisplayStyle display;
+  final DisplayLine display;
 
   /// Determines if the new line characters (\n) should be converted to <br> dom nodes
   final bool renderNewLines;
 
-  JSX(
-      this.text,
-      {
-        List<String> allowedElements = const [],
-        Map<String, JSXStylesheet> stylesheet = const {},
-        Map<String, Widget> widgets = const {},
-        this.alignment,
-        this.padding,
-        this.margin,
-        this.backgroundColor,
-        this.boxDecoration,
-        this.textStyle,
-        this.display = DisplayStyle.block,
-        this.renderNewLines = false
-      }
-  ){
+  JSX(this.text,
+      {List<String> allowedElements = const [],
+      Map<String, JSXStylesheet> stylesheet = const {},
+      Map<String, Widget> widgets = const {},
+      this.alignment,
+      this.padding,
+      this.margin,
+      this.backgroundColor,
+      this.boxDecoration,
+      this.textStyle,
+      this.display = DisplayLine.block,
+      this.renderNewLines = false}) {
     if (allowedElements.isNotEmpty) {
       this.allowedElements.clear();
       this.allowedElements.addAll(allowedElements);
@@ -106,7 +102,7 @@ class JSX extends StatelessWidget {
       alignment: alignment,
       padding: padding,
       color: backgroundColor,
-      width: display == DisplayStyle.block ? double.infinity : null,
+      width: display == DisplayLine.block ? double.infinity : null,
       child: Wrap(
         children: [parsedText],
       ),

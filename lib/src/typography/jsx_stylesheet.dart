@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 /// Flutter's responsive configuration similar to display Html property
-enum DisplayStyle {
+enum DisplayLine {
   /// Text element should occupy the entire line
   block,
 
@@ -19,7 +19,7 @@ class JSXStylesheet {
   TextOverflow textOverflow;
 
   /// Determines if the text element should occupy all line or not
-  DisplayStyle displayStyle;
+  DisplayLine displayLine;
 
   /// Box decoration containing configurations such as borders, background color, degrade effects, etc.
   BoxDecoration boxDecoration;
@@ -65,7 +65,7 @@ class JSXStylesheet {
     this.margin,
     this.textStyle,
     this.textOverflow = TextOverflow.clip,
-    this.displayStyle = DisplayStyle.inline,
+    this.displayLine = DisplayLine.inline,
     this.boxDecoration,
     this.opacity = 1.0,
     this.textAlign, // = TextAlign.left,
@@ -108,10 +108,11 @@ class JSXStylesheet {
       placeholderAlignment =
           newStylesheet.placeholderAlignment ?? placeholderAlignment;
       textIndent = newStylesheet.textIndent ?? textIndent;
-      displayStyle = newStylesheet.displayStyle ?? displayStyle;
+      displayLine = newStylesheet.displayLine ?? displayLine;
       textOverflow = newStylesheet.textOverflow ?? textOverflow;
       mainAxisAlignment = newStylesheet.mainAxisAlignment ?? mainAxisAlignment;
-      crossAxisAlignment = newStylesheet.crossAxisAlignment ?? crossAxisAlignment;
+      crossAxisAlignment =
+          newStylesheet.crossAxisAlignment ?? crossAxisAlignment;
 
       if (mergeBoxProperties) {
         width = newStylesheet.width ?? width;

@@ -93,9 +93,9 @@ packages:
   flutter_responsive:
     dependency: "direct main"
     description:
-      path: "..\\..\\flutter_responsive"
-      relative: true
-    source: path
+      name: flutter_responsive
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.5+1"
   flutter_test:
     dependency: "direct dev"

@@ -4,7 +4,6 @@ import 'jsx_node_text.dart';
 import 'jsx_node_element.dart';
 
 class JSXParser {
-
   @visibleForTesting
   static String parserHtmlPattern =
       '^((?:\\\\.|[^<\\\\]+)*)(<(\\W*)([\\w]+)?(((\\s*[\\w_-]+(=("([^\\\\"]|\\\\.)+"|\'([^\\\\\']|\\\\.)+\'))?)?)*)\\s*(\\W*)>)?';
@@ -21,11 +20,7 @@ class JSXParser {
   static final RegExp regExpAttr =
       RegExp(parserAttrPattern, caseSensitive: false, multiLine: true);
 
-  static List<String> _literalTags = const [
-    'code',
-    'var',
-    'pre'
-  ];
+  static List<String> _literalTags = const ['code', 'var', 'pre'];
 
   static List<String> _selfEnclosedTags = const [
     'input',
@@ -44,8 +39,8 @@ class JSXParser {
         if (name.isNotEmpty) {
           node.attributes[name] =
               value.replaceAllMapped(RegExp(r'\\(.)'), (match) {
-                return match.group(1);
-              });
+            return match.group(1);
+          });
         }
       }
     }
@@ -104,7 +99,6 @@ class JSXParser {
           fullMatch = match[0];
 
           if (fullMatch.isNotEmpty) {
-
             // erase what was already done
             html = html.replaceFirst(fullMatch, '');
 
@@ -118,25 +112,21 @@ class JSXParser {
             bool processNode = true;
 
             // if this element is literal, all his content should returned as single literal text
-            if(
-              localNode?.localName != null
-              && _literalTags.contains(localNode.localName)
-            ){
-
-              if(closingTag != '/' || tagName != localNode.localName){
+            if (localNode?.localName != null &&
+                _literalTags.contains(localNode.localName)) {
+              if (closingTag != '/' || tagName != localNode.localName) {
                 literalContent += fullMatch;
                 processNode = false;
               } else {
-                localNode.addNode(JSXNodeText(literalContent.replaceAllMapped(RegExp(r'\\(.)'), (match) {
+                localNode.addNode(JSXNodeText(
+                    literalContent.replaceAllMapped(RegExp(r'\\(.)'), (match) {
                   return match.group(1);
                 })));
                 literalContent = '';
               }
-
             }
 
-            if(processNode){
-
+            if (processNode) {
               JSXNodeElement childElement;
 
               // Pure text is add first to element
@@ -151,12 +141,13 @@ class JSXParser {
                   if (closingTag == '/' &&
                       !_selfEnclosedTags.contains(tagName)) {
                     if (localNode is JSXNodeElement) {
-
                       deepLevel--;
 
                       // If the tag name are not closing the right dom element, invalidate
                       // the results with null
-                      return (localNode.localName != tagName) ? null : localNode;
+                      return (localNode.localName != tagName)
+                          ? null
+                          : localNode;
                     }
                   }
 
@@ -172,7 +163,6 @@ class JSXParser {
               if (childElement != null &&
                   selfEnclosing != '/' &&
                   !_selfEnclosedTags.contains(tagName)) {
-
                 deepLevel++;
 
                 // update his own child element
@@ -183,7 +173,6 @@ class JSXParser {
               if (childElement != null) {
                 localNode?.addNode(childElement);
               }
-
             }
           }
         }
@@ -200,7 +189,7 @@ class JSXParser {
         resultedNode = _processTree(localNode: bodyNode);
 
     // If levels are not correctly closed, the html is invalid
-    if (deepLevel != 0){
+    if (deepLevel != 0) {
       return null;
     }
 

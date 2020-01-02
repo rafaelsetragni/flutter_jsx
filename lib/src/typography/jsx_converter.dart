@@ -125,8 +125,7 @@ class JSXConverter {
 
   /// Parse dom elements into container widgets
   @visibleForTesting
-  InlineSpan parseDomElement(
-      JSXNodeElement node, JSXStylesheet lastStyle) {
+  InlineSpan parseDomElement(JSXNodeElement node, JSXStylesheet lastStyle) {
     if (_allowedElements.isNotEmpty &&
         node.localName != 'body' &&
         !_allowedElements.contains(node.localName)) {
@@ -236,8 +235,7 @@ class JSXConverter {
         : TextSpan(
             style: lastStyle?.textStyle ?? TextStyle(), children: children);
 
-    JSXStylesheet localStylesheet =
-        applyHtmlAttributes(element, lastStyle);
+    JSXStylesheet localStylesheet = applyHtmlAttributes(element, lastStyle);
 
     if (lastStyle != null && span != null) {
       RichText richText = RichText(
@@ -255,17 +253,16 @@ class JSXConverter {
           localStylesheet.boxDecoration != null ||
           localStylesheet.mainAxisAlignment != null ||
           localStylesheet.crossAxisAlignment != null ||
-          localStylesheet.displayStyle == DisplayStyle.block) {
+          localStylesheet.displayLine == DisplayLine.block) {
         widget = Container(
             width: localStylesheet.width ??
-                (localStylesheet.displayStyle == DisplayStyle.block
+                (localStylesheet.displayLine == DisplayLine.block
                     ? double.infinity
                     : null),
             height: localStylesheet.height ?? null,
             margin: localStylesheet.margin,
             padding: localStylesheet.padding,
             decoration: localStylesheet.boxDecoration,
-
             child: widget);
       }
 

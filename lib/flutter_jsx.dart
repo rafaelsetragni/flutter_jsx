@@ -1,7 +1,7 @@
 library flutter_jsx;
 
 export 'src/typography/jsx_text.dart';
-export 'src/typography/jxs_typography.dart';
+export 'src/typography/jsx_typography.dart';
 export 'src/typography/jsx_stylesheet.dart';
 
 export 'src/parser/jsx_parser.dart';

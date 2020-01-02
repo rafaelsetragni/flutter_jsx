@@ -15,7 +15,7 @@ class TypographyPage extends StatefulWidget {
 class _TypographyPage extends State<TypographyPage> {
 
   bool highlight, displayInline;
-  DisplayStyle displayStyle;
+  DisplayLine displayLine;
 
   List<String> allowedElements = [
     'p',
@@ -44,7 +44,7 @@ class _TypographyPage extends State<TypographyPage> {
   void initState() {
     highlight = false;
     displayInline = false;
-    displayStyle = DisplayStyle.block;
+    displayLine = DisplayLine.block;
     super.initState();
   }
 
@@ -101,7 +101,7 @@ class _TypographyPage extends State<TypographyPage> {
                             onChanged: (selected){
                               setState(() {
                                 displayInline = selected;
-                                displayStyle = selected ? DisplayStyle.inline : DisplayStyle.block;
+                                displayLine = selected ? DisplayLine.inline : DisplayLine.block;
                               });
                             }
                         ),
@@ -131,7 +131,7 @@ class _TypographyPage extends State<TypographyPage> {
                         margin: EdgeInsets.only(bottom: 40),
                         backgroundColor: hilightColor,
                         textStyle: TextStyle(color: Colors.blueGrey, fontStyle: FontStyle.italic),
-                        display: displayStyle,
+                        display: displayLine,
                       ),
 
                       JSX(
@@ -142,17 +142,17 @@ class _TypographyPage extends State<TypographyPage> {
                         '<h5>h5. Responsive heading</h5>'
                         '<h6>h6. Responsive heading</h6>',
                         stylesheet: {
-                          'h1': JSXStylesheet( displayStyle: displayStyle ),
-                          'h2': JSXStylesheet( displayStyle: displayStyle ),
-                          'h3': JSXStylesheet( displayStyle: displayStyle ),
-                          'h4': JSXStylesheet( displayStyle: displayStyle ),
-                          'h5': JSXStylesheet( displayStyle: displayStyle ),
-                          'h6': JSXStylesheet( displayStyle: displayStyle ),
+                          'h1': JSXStylesheet( displayLine: displayLine ),
+                          'h2': JSXStylesheet( displayLine: displayLine ),
+                          'h3': JSXStylesheet( displayLine: displayLine ),
+                          'h4': JSXStylesheet( displayLine: displayLine ),
+                          'h5': JSXStylesheet( displayLine: displayLine ),
+                          'h6': JSXStylesheet( displayLine: displayLine ),
                         },
                         margin: EdgeInsets.only(bottom: 20),
                         allowedElements: allowedElements,
                         backgroundColor: hilightColor,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
 
                       JSX(
@@ -165,7 +165,7 @@ class _TypographyPage extends State<TypographyPage> {
                         stylesheet: {
                           'RebelAliance': JSXStylesheet( margin: EdgeInsets.symmetric(horizontal: 5.0) ),
                           'BackTo90s': JSXStylesheet( borderRadius: BorderRadius.all(Radius.circular(30.0)) ),
-                          'p': JSXStylesheet( displayStyle: displayStyle ),
+                          'p': JSXStylesheet( displayLine: displayLine ),
                         },
                         widgets: {
                           'RebelAliance': Icon(FontAwesomeIcons.rebel, color: Colors.red),
@@ -183,7 +183,7 @@ class _TypographyPage extends State<TypographyPage> {
                         backgroundColor: hilightColor,
                         textStyle: TextStyle(fontSize: 16, color: Colors.black),
                         renderNewLines: true,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
 
                       JSX(
@@ -191,7 +191,7 @@ class _TypographyPage extends State<TypographyPage> {
                         margin: EdgeInsets.only(bottom: 40),
                         allowedElements: allowedElements,
                         backgroundColor: hilightColor,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
                       JSX(
                         """
@@ -205,14 +205,14 @@ class _TypographyPage extends State<TypographyPage> {
                           <p><code>bdi</code> and <code>bdo</code> Test.</p>
                         """,
                         stylesheet: {
-                          'h1': JSXStylesheet( displayStyle: displayStyle, margin: EdgeInsets.only(bottom: 10) ),
-                          'h2': JSXStylesheet( displayStyle: displayStyle, margin: EdgeInsets.symmetric(vertical: 10)  ),
-                          'p': JSXStylesheet( displayStyle: displayStyle )
+                          'h1': JSXStylesheet( displayLine: displayLine, margin: EdgeInsets.only(bottom: 10) ),
+                          'h2': JSXStylesheet( displayLine: displayLine, margin: EdgeInsets.symmetric(vertical: 10)  ),
+                          'p': JSXStylesheet( displayLine: displayLine )
                         },
                         margin: EdgeInsets.only(bottom: 40),
                         allowedElements: allowedElements,
                         backgroundColor: hilightColor,
-                        display: displayStyle,
+                        display: displayLine,
                       ),
                       JSX(
                         '<q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim'
@@ -228,7 +228,7 @@ class _TypographyPage extends State<TypographyPage> {
                         margin: EdgeInsets.only(left: 30, right: 10),
                         allowedElements: allowedElements,
                         alignment: Alignment.topLeft,
-                        display: displayStyle,
+                        display: displayLine,
                       )
 
                     ],

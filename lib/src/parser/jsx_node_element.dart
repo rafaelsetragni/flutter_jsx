@@ -52,7 +52,9 @@ class JSXNodeElement extends JSXNode {
 
   @override
   int get hashCode {
-    return localName.hashCode ^ attributes.length.hashCode ^ nodes.length.hashCode;
+    return localName.hashCode ^
+        attributes.length.hashCode ^
+        nodes.length.hashCode;
   }
 
   @override

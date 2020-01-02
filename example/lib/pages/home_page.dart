@@ -69,7 +69,7 @@ JSX(
                                 '<pre>JSXStylehseet</pre> for each specific element or replace a specific tag '
                                 ' by entire Widget using the property <pre>widgets</pre></p>'
                             '</div>',
-                            display: DisplayStyle.block,
+                            display: DisplayLine.block,
                             padding: EdgeInsets.only(bottom: 10),
                             widgets: {
                               'Wow': Image.asset('assets/such_nice_code.jpg'),
@@ -113,16 +113,16 @@ JSX(
                                 width: 150,
                                 height: 150,
                                   boxDecoration: BoxDecoration(color: Colors.blue),
-                                displayStyle: DisplayStyle.block
+                                displayLine: DisplayLine.block
                               ),
                               'Title': JSXStylesheet(
                                 width: 150,
                                 height: 150,
-                                displayStyle: DisplayStyle.inline,
+                                displayLine: DisplayLine.inline,
                                 alignment: Alignment.center
                               ),
                               'h1': JSXStylesheet(
-                                displayStyle: DisplayStyle.inline
+                                displayLine: DisplayLine.inline
                               ),
                               'h6': JSXStylesheet(
                                 textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)

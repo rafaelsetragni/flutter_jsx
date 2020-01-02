@@ -35,7 +35,7 @@ class FullscreenImageView extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
               child: JSX(
                 '<Close/>',
-                display: DisplayStyle.inline,
+                display: DisplayLine.inline,
                 stylesheet: {
                   'Close': JSXStylesheet(
                       padding: EdgeInsets.only(bottom: 5)

@@ -17,8 +17,8 @@ dependencies:
 
   extended_image: ^0.6.8
 
-  flutter_responsive: #^0.0.5+1
-    path: ../../flutter_responsive
+  flutter_responsive: ^0.0.5+1
+  #  path: ../../flutter_responsive
 
 dev_dependencies:
   flutter_test:
