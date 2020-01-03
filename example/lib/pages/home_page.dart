@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_jsx/flutter_jsx.dart';
 import 'package:flutter_jsx_example/layouts/sidebar.dart';
 import 'package:flutter_responsive/flutter_responsive.dart';
@@ -43,32 +44,29 @@ class _HomePage extends State<HomePage> {
                       ResponsiveCol(
                         children: [
                           JSX(
-                            '<div>'
-                                '<Title><h1><Logo/></h1><h6>for <i>Flutter</i></h6></Title>'
+                            '<Title>'
+                                '<span><h1><Logo/></h1><h6>for <i>Flutter</i></h6></span>'
                                 '<Wow/>'
-                                '<br><br>'
-                                '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-                                '<br><br>'
-                                '<p>Source code:</p>'
-                                '<code>'+
+                            '</Title>'
+                            '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
+                            '<p>Source code:</p>'
+                            '<code>'+
 """
 JSX(
-  '<div>'
-    '<h1><Logo/><span> for <i>Flutter</i></span></h1>'
+  '<Title>'
+    '<span><h1><Logo/></h1><h6>for <i>Flutter</i></h6></span>'
     '<Wow/>'
-    '<br><br>'
-    '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-    '<br><br>'
-    '<p>Source code:</p>'
-    '<code><\\/code>'
-  '</div>'
+  '</Title>'
+  '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
+  '<p>Source code:</p>'
+  '<code><\\/code>'
+'</div>'
 );
 """
-                                +'</code>'
-                                '<p>You can also personalize a simple stylesheet using the class '
-                                '<pre>JSXStylehseet</pre> for each specific element or replace a specific tag '
-                                ' by entire Widget using the property <pre>widgets</pre></p>'
-                            '</div>',
+                            +'</code>'
+                            '<p>You can also personalize a simple stylesheet using the class '
+                            '<pre>JSXStylehseet</pre> for each specific element or replace a specific tag '
+                            ' by entire Widget using the property <pre>widgets</pre></p>',
                             display: DisplayLine.block,
                             padding: EdgeInsets.only(bottom: 10),
                             widgets: {
@@ -107,24 +105,29 @@ JSX(
                             stylesheet: {
                               'code': JSXStylesheet(
                                 padding: EdgeInsets.all(10.0),
-                                margin: EdgeInsets.symmetric(vertical: 20)
+                                margin: EdgeInsets.symmetric(vertical: 20.0)
+                              ),
+                              'Title': JSXStylesheet(
+                                displayLine: DisplayLine.block,
+                                margin: EdgeInsets.only(bottom: 25.0),
+                                mainAxisAlignment: MainAxisAlignment.spaceAround
                               ),
                               'Wow': JSXStylesheet(
                                 width: 150,
                                 height: 150,
-                                  boxDecoration: BoxDecoration(color: Colors.blue),
-                                displayLine: DisplayLine.block
-                              ),
-                              'Title': JSXStylesheet(
-                                width: 150,
-                                height: 150,
-                                displayLine: DisplayLine.inline,
-                                alignment: Alignment.center
-                              ),
-                              'h1': JSXStylesheet(
                                 displayLine: DisplayLine.inline
                               ),
+                              'span': JSXStylesheet(
+                                width: 120,
+                                height: 150,
+                                displayLine: DisplayLine.inline,
+                                alignment: Alignment.center,
+                              ),
+                              'h1': JSXStylesheet(
+                                displayLine: DisplayLine.block,
+                              ),
                               'h6': JSXStylesheet(
+                                displayLine: DisplayLine.block,
                                 textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
                               ),
                             },

@@ -6,7 +6,7 @@ import 'jsx_node_element.dart';
 class JSXParser {
   @visibleForTesting
   static String parserHtmlPattern =
-      '^((?:\\\\.|[^<\\\\]+)*)(<(\\W*)([\\w]+)?(((\\s*[\\w_-]+(=("([^\\\\"]|\\\\.)+"|\'([^\\\\\']|\\\\.)+\'))?)?)*)\\s*(\\W*)>)?';
+      '^((?:\\\\.|[^<\\\\]+)*)(<([^\\w<>]*)([\\w]+)?(((\\s*[\\w_-]+(=("([^\\\\"]|\\\\.)+"|\'([^\\\\\']|\\\\.)+\'))?)?)*)\\s*([^\\w<>]*)>)?';
 
   @visibleForTesting
   static String parserAttrPattern =

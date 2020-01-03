@@ -102,19 +102,20 @@ class JSXStylesheet {
               ? textStyle
               : textStyle.merge(newStylesheet.textStyle));
       textStyle?.merge(TextStyle(inherit: true));
-      opacity = newStylesheet.opacity ?? opacity;
       textAlign = newStylesheet.textAlign ?? textAlign;
-      alignment = newStylesheet.alignment ?? alignment;
       placeholderAlignment =
           newStylesheet.placeholderAlignment ?? placeholderAlignment;
       textIndent = newStylesheet.textIndent ?? textIndent;
       displayLine = newStylesheet.displayLine ?? displayLine;
       textOverflow = newStylesheet.textOverflow ?? textOverflow;
-      mainAxisAlignment = newStylesheet.mainAxisAlignment ?? mainAxisAlignment;
-      crossAxisAlignment =
-          newStylesheet.crossAxisAlignment ?? crossAxisAlignment;
 
       if (mergeBoxProperties) {
+        opacity = newStylesheet.opacity ?? opacity;
+        alignment = newStylesheet.alignment ?? alignment;
+        mainAxisAlignment =
+            newStylesheet.mainAxisAlignment ?? mainAxisAlignment;
+        crossAxisAlignment =
+            newStylesheet.crossAxisAlignment ?? crossAxisAlignment;
         width = newStylesheet.width ?? width;
         height = newStylesheet.height ?? height;
         margin = mergeEdges(margin, newStylesheet.margin);

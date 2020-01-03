@@ -20,7 +20,7 @@ To share your improvements, please first do a Fork of this project, change what 
 * This plugin was separated from [Flutter Responsive Plugin](https://pub.dev/packages/flutter_responsive) but you can use both plugins simultaneously without problem, as was used on our example project.
 * You don´t need to use <></> to print many elements on same [RichText] widget, because this plugin are using by default children instead single child. But you can write (uselessly) this empty element if you wish. 
 * Its not necessary to use expressions, because you can do whatever you want to inside a widget and, after that, include that final widget to replace a HTML element.
-* The [DisplayLine] property was based on ```display: block``` Html property and works on same exactly way.
+* The [DisplayLine] property was based on ```display: block``` Html property and works on exactly same way.
 * Fell free to improve and change this project.
 
 
@@ -36,7 +36,7 @@ Add the reference into your ```.dart``` files
 ```dart
 import 'package:flutter_responsive/flutter_jsx.dart';
 ```
-Use the Widget ```ResponsiveContainer```, ```ResponsiveRow```, ```ResponsiveCol``` and ```ResponsiveText``` as the way you want to.
+Use the Widget ```JSX``` and the class ```JSXStylesheet``` as the way you want to.
 
 
 # How to use
@@ -107,7 +107,6 @@ JSX(
       'Wow': JSXStylesheet(
         width: 150,
         height: 150,
-          boxDecoration: BoxDecoration(color: Colors.blue),
         displayLine: DisplayLine.block
       ),
       'h1': JSXStylesheet(
