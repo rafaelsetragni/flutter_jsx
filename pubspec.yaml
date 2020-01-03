@@ -1,6 +1,6 @@
 name: flutter_jsx
 description: A Flutter plugin to translate JSX strings into RichText objects, to help developers to productively build rich user interfaces.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/rafaelsetragni/flutter_jsx
 
 environment:

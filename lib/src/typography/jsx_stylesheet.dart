@@ -112,7 +112,8 @@ class JSXStylesheet {
       if (mergeBoxProperties) {
         opacity = newStylesheet.opacity ?? opacity;
         alignment = newStylesheet.alignment ?? alignment;
-        mainAxisAlignment = newStylesheet.mainAxisAlignment ?? mainAxisAlignment;
+        mainAxisAlignment =
+            newStylesheet.mainAxisAlignment ?? mainAxisAlignment;
         crossAxisAlignment =
             newStylesheet.crossAxisAlignment ?? crossAxisAlignment;
         width = newStylesheet.width ?? width;

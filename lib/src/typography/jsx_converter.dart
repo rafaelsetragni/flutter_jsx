@@ -62,8 +62,7 @@ class JSXConverter {
       {@required String html,
       bool renderNewLines = false,
       Map<String, JSXStylesheet> customStylesheet = const {},
-      Map<String, Widget> widgets = const {}}
-  ){
+      Map<String, Widget> widgets = const {}}) {
     stylesheet = customStylesheet;
     this.widgets = widgets;
 
@@ -231,26 +230,25 @@ class JSXConverter {
   @visibleForTesting
   InlineSpan getSpanElement(JSXNodeElement element, List<InlineSpan> children,
       JSXStylesheet lastStyle) {
-
-    if(children == null || children.length == 0){ return null; }
+    if (children == null || children.length == 0) {
+      return null;
+    }
 
     InlineSpan span = children.length == 1
         ? children[0]
-        : TextSpan( style: lastStyle?.textStyle ?? TextStyle(), children: children );
+        : TextSpan(
+            style: lastStyle?.textStyle ?? TextStyle(), children: children);
 
     JSXStylesheet localStylesheet = applyHtmlAttributes(element, lastStyle);
 
     if (lastStyle != null && span != null) {
-
       Widget widget;
 
-      if (
-        localStylesheet.mainAxisAlignment != null ||
-        localStylesheet.crossAxisAlignment != null
-      ){
+      if (localStylesheet.mainAxisAlignment != null ||
+          localStylesheet.crossAxisAlignment != null) {
         List<Widget> childWidgets = [];
 
-        for(InlineSpan childSpan in children){
+        for (InlineSpan childSpan in children) {
           childWidgets.add(RichText(
             //softWrap: true,
             textAlign: localStylesheet.textAlign ?? TextAlign.left,
@@ -259,18 +257,16 @@ class JSXConverter {
         }
 
         widget = Row(
-            mainAxisAlignment: localStylesheet.mainAxisAlignment ?? MainAxisAlignment.start,
-            crossAxisAlignment: localStylesheet.crossAxisAlignment ?? CrossAxisAlignment.center,
-            children: childWidgets
-        );
-
+            mainAxisAlignment:
+                localStylesheet.mainAxisAlignment ?? MainAxisAlignment.start,
+            crossAxisAlignment:
+                localStylesheet.crossAxisAlignment ?? CrossAxisAlignment.center,
+            children: childWidgets);
       } else {
-
         widget = RichText(
           textAlign: localStylesheet.textAlign ?? TextAlign.left,
           text: span,
         );
-
       }
 
       if (localStylesheet.width != null ||
@@ -316,7 +312,7 @@ class JSXConverter {
           ].contains(localStylesheet.placeholderAlignment))
               ? PlaceholderAlignment.bottom
               : localStylesheet.placeholderAlignment ??
-              PlaceholderAlignment.bottom,
+                  PlaceholderAlignment.bottom,
           child: widget);
 
       return blockSpan;
@@ -324,5 +320,4 @@ class JSXConverter {
 
     return span;
   }
-
 }
