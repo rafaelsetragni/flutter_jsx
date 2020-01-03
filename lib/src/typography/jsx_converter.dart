@@ -230,7 +230,10 @@ class JSXConverter {
   /// APPLIES THE STYLESHEET TO THE SPAN OBJECT
   @visibleForTesting
   InlineSpan getSpanElement(JSXNodeElement element, List<InlineSpan> children,
-      JSXStylesheet lastStyle){
+      JSXStylesheet lastStyle) {
+
+    if(children == null || children.length == 0){ return null; }
+
     InlineSpan span = children.length == 1
         ? children[0]
         : TextSpan( style: lastStyle?.textStyle ?? TextStyle(), children: children );
@@ -239,36 +242,47 @@ class JSXConverter {
 
     if (lastStyle != null && span != null) {
 
-      RichText richText = RichText(
-        softWrap: true,
-        textAlign: localStylesheet.textAlign ?? TextAlign.left,
-        text: span,
-      );
-
-      Widget widget = richText;
+      Widget widget;
 
       if (
         localStylesheet.mainAxisAlignment != null ||
         localStylesheet.crossAxisAlignment != null
       ){
+        List<Widget> childWidgets = [];
+
+        for(InlineSpan childSpan in children){
+          childWidgets.add(RichText(
+            //softWrap: true,
+            textAlign: localStylesheet.textAlign ?? TextAlign.left,
+            text: childSpan,
+          ));
+        }
+
         widget = Row(
-            mainAxisAlignment: localStylesheet.mainAxisAlignment,
-            crossAxisAlignment: localStylesheet.crossAxisAlignment,
-            children: <Widget>[
-              widget
-            ]
+            mainAxisAlignment: localStylesheet.mainAxisAlignment ?? MainAxisAlignment.start,
+            crossAxisAlignment: localStylesheet.crossAxisAlignment ?? CrossAxisAlignment.center,
+            children: childWidgets
         );
+
+      } else {
+
+        widget = RichText(
+          textAlign: localStylesheet.textAlign ?? TextAlign.left,
+          text: span,
+        );
+
       }
 
       if (localStylesheet.width != null ||
           localStylesheet.height != null ||
           localStylesheet.margin != null ||
           localStylesheet.padding != null ||
-          localStylesheet.boxDecoration != null ||
           localStylesheet.alignment != null ||
+          localStylesheet.boxDecoration != null ||
+          localStylesheet.mainAxisAlignment != null ||
+          localStylesheet.crossAxisAlignment != null ||
           localStylesheet.displayLine == DisplayLine.block) {
         widget = Container(
-            alignment: localStylesheet.alignment,
             width: localStylesheet.width ??
                 (localStylesheet.displayLine == DisplayLine.block
                     ? double.infinity
@@ -276,6 +290,7 @@ class JSXConverter {
             height: localStylesheet.height ?? null,
             margin: localStylesheet.margin,
             padding: localStylesheet.padding,
+            alignment: localStylesheet.alignment,
             decoration: localStylesheet.boxDecoration,
             child: widget);
       }
@@ -301,7 +316,7 @@ class JSXConverter {
           ].contains(localStylesheet.placeholderAlignment))
               ? PlaceholderAlignment.bottom
               : localStylesheet.placeholderAlignment ??
-                  PlaceholderAlignment.bottom,
+              PlaceholderAlignment.bottom,
           child: widget);
 
       return blockSpan;
@@ -309,4 +324,5 @@ class JSXConverter {
 
     return span;
   }
+
 }

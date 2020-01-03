@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_jsx/flutter_jsx.dart';
 import 'package:flutter_jsx_example/layouts/sidebar.dart';
 import 'package:flutter_responsive/flutter_responsive.dart';
@@ -43,23 +44,22 @@ class _HomePage extends State<HomePage> {
                       ResponsiveCol(
                         children: [
                           JSX(
-                            '<Title><h1><Logo/></h1><h6>for <i>Flutter</i></h6></Title>'
-                            '<Wow/>'
-                            '<br><br>'
+                            '<Title>'
+                                '<span><h1><Logo/></h1><h6>for <i>Flutter</i></h6></span>'
+                                '<Wow/>'
+                            '</Title>'
                             '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-                            '<br><br>'
                             '<p>Source code:</p>'
                             '<code>'+
 """
 JSX(
-'<div>'
-'<h1><Logo/><span> for <i>Flutter</i></span></h1>'
-'<Wow/>'
-'<br><br>'
-'<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
-'<br><br>'
-'<p>Source code:</p>'
-'<code><\\/code>'
+  '<Title>'
+    '<span><h1><Logo/></h1><h6>for <i>Flutter</i></h6></span>'
+    '<Wow/>'
+  '</Title>'
+  '<p>This <b>RichText</b> was easily produced and personalized using pure JSX / HTML</p>'
+  '<p>Source code:</p>'
+  '<code><\\/code>'
 '</div>'
 );
 """
@@ -104,25 +104,31 @@ JSX(
                             },
                             stylesheet: {
                               'code': JSXStylesheet(
-                                  padding: EdgeInsets.all(10.0),
-                                  margin: EdgeInsets.symmetric(vertical: 20)
-                              ),
-                              'Wow': JSXStylesheet(
-                                  width: 150,
-                                  boxDecoration: BoxDecoration(color: Colors.blue),
-                                  displayLine: DisplayLine.block
+                                padding: EdgeInsets.all(10.0),
+                                margin: EdgeInsets.symmetric(vertical: 20.0)
                               ),
                               'Title': JSXStylesheet(
-                                  width: 350,
-                                  displayLine: DisplayLine.inline,
-                                  alignment: Alignment.center
+                                displayLine: DisplayLine.block,
+                                margin: EdgeInsets.only(bottom: 25.0),
+                                mainAxisAlignment: MainAxisAlignment.spaceAround
+                              ),
+                              'Wow': JSXStylesheet(
+                                width: 150,
+                                height: 150,
+                                displayLine: DisplayLine.inline
+                              ),
+                              'span': JSXStylesheet(
+                                width: 120,
+                                height: 150,
+                                displayLine: DisplayLine.inline,
+                                alignment: Alignment.center,
                               ),
                               'h1': JSXStylesheet(
-                                  displayLine: DisplayLine.inline,
+                                displayLine: DisplayLine.block,
                               ),
                               'h6': JSXStylesheet(
-                                  boxDecoration: BoxDecoration(color: Colors.blue),
-                                  textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
+                                displayLine: DisplayLine.block,
+                                textStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold)
                               ),
                             },
                             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20)

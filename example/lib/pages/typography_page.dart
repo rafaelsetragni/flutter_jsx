@@ -163,7 +163,10 @@ class _TypographyPage extends State<TypographyPage> {
                             '<p>It´s pizza time!</p>'
                         '</center>',
                         stylesheet: {
-                          'RebelAliance': JSXStylesheet( margin: EdgeInsets.symmetric(horizontal: 5.0) ),
+                          'RebelAliance': JSXStylesheet(
+                            displayLine: DisplayLine.inline,
+                            margin: EdgeInsets.symmetric(horizontal: 5.0)
+                          ),
                           'BackTo90s': JSXStylesheet( borderRadius: BorderRadius.all(Radius.circular(30.0)) ),
                           'p': JSXStylesheet( displayLine: displayLine ),
                         },

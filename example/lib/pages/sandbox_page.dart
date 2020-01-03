@@ -124,6 +124,73 @@ class _SandboxPage extends State<SandboxPage> {
                         ),
                       ),
 
+                      Container(
+                        margin: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(10.0),
+                        width: double.infinity,
+                        color: hilightColor,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: Offset.zero.dx),
+                              child: RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                    children: [
+                                      WidgetSpan(
+                                        child: Padding(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: 150,
+                                            height: 150,
+                                            child: Image.asset('assets/such_nice_code.jpg'),
+                                          ),
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text:
+                                          'You’re going to step into the Flutter source code now to see how widgets, elements, and render objects are actually used. You’ll follow a Text'
+                                          ' widget all the way to the creation of its render object, that is, RenderParagraph.'
+                                          'Don’t worry, I’ll stay with you all along the way.'
+                                          'Open your starter project in Android Studio 3.4 or later (with the Flutter plugin installed) and run it. You’ll need to first run flutter pub get'
+                                          'to get your project dependencies. In Android Studio, you can do so using the Get dependencies popup you see after opening the project.'
+                                          'You’re going to step into the Flutter source code now to see how widgets, elements, and render objects are actually used. You’ll follow a Text'
+                                          ' widget all the way to the creation of its render object, that is, RenderParagraph.'
+                                          'Don’t worry, I’ll stay with you all along the way.'
+                                          'Open your starter project in Android Studio 3.4 or later (with the Flutter plugin installed) and run it. You’ll need to first run flutter pub get'
+                                          'to get your project dependencies. In Android Studio, you can do so using the Get dependencies popup you see after opening the project.'
+                                          'You’re going to step into the Flutter source code now to see how widgets, elements, and render objects are actually used. You’ll follow a Text'
+                                          ' widget all the way to the creation of its render object, that is, RenderParagraph.'
+                                          'Don’t worry, I’ll stay with you all along the way.'
+                                          'Open your starter project in Android Studio 3.4 or later (with the Flutter plugin installed) and run it. You’ll need to first run flutter pub get'
+                                          'to get your project dependencies. In Android Studio, you can do so using the Get dependencies popup you see after opening the project.'
+                                          'You’re going to step into the Flutter source code now to see how widgets, elements, and render objects are actually used. You’ll follow a Text'
+                                          ' widget all the way to the creation of its render object, that is, RenderParagraph.'
+                                          'Don’t worry, I’ll stay with you all along the way.'
+                                          'Open your starter project in Android Studio 3.4 or later (with the Flutter plugin installed) and run it. You’ll need to first run flutter pub get'
+                                          'to get your project dependencies. In Android Studio, you can do so using the Get dependencies popup you see after opening the project.'
+                                          'You’re going to step into the Flutter source code now to see how widgets, elements, and render objects are actually used. You’ll follow a Text'
+                                          ' widget all the way to the creation of its render object, that is, RenderParagraph.'
+                                          'Don’t worry, I’ll stay with you all along the way.'
+                                          'Open your starter project in Android Studio 3.4 or later (with the Flutter plugin installed) and run it. You’ll need to first run flutter pub get'
+                                          'to get your project dependencies. In Android Studio, you can do so using the Get dependencies popup you see after opening the project.'
+                                      )
+                                    ]
+                                ),
+                              ),
+                            )
+                          ]
+                        ),
+                      ),
+
                       JSX(
                         'R\$ <b>99</b>,00',
                         stylesheet: {
