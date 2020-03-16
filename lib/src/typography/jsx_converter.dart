@@ -59,10 +59,13 @@ class JSXConverter {
 
   /// PARSE HTML CODE INTO RICH TEXT WIDGET
   RichText createElement(
-      {@required String html,
+    {
+      @required String html,
       bool renderNewLines = false,
       Map<String, JSXStylesheet> customStylesheet = const {},
-      Map<String, Widget> widgets = const {}}) {
+      Map<String, Widget> widgets = const {},
+      TextOverflow textOverflow = TextOverflow.clip
+    }) {
     stylesheet = customStylesheet;
     this.widgets = widgets;
 
@@ -71,10 +74,11 @@ class JSXConverter {
 
     InlineSpan spanBody;
     if (domBody != null) {
-      spanBody = parseDomNode(domBody, customStylesheet['body']);
+      spanBody = parseDomNode(domBody, customStylesheet['*']);
     }
 
     return RichText(
+      overflow: textOverflow,
       text: spanBody ?? TextSpan(text: ''),
     );
   }
@@ -127,7 +131,7 @@ class JSXConverter {
   @visibleForTesting
   InlineSpan parseDomElement(JSXNodeElement node, JSXStylesheet lastStyle) {
     if (_allowedElements.isNotEmpty &&
-        node.localName != 'body' &&
+        node.localName != '*' &&
         !_allowedElements.contains(node.localName)) {
       return null;
     }

@@ -4,8 +4,8 @@ import 'package:flutter_jsx/src/typography/jsx_stylesheet.dart';
 
 import 'jsx_stylesheet.dart';
 
-/// Transform Html text [String] into [RichText] object, combining dom elements with their respective [JSXStylesheet]
-class JSX extends StatelessWidget {
+class JSX extends StatefulWidget {
+
   /// List containing all the html elements allowed (Recommended to use due to security issues that could rise with filled with user's input)
   final List<String> allowedElements = [];
 
@@ -48,18 +48,22 @@ class JSX extends StatelessWidget {
   /// Determines if the new line characters (\n) should be converted to <br> dom nodes
   final bool renderNewLines;
 
+  /// Determines if the new line characters (\n) should be converted to <br> dom nodes
+  final TextOverflow textOverflow;
+
   JSX(this.text,
       {List<String> allowedElements = const [],
-      Map<String, JSXStylesheet> stylesheet = const {},
-      Map<String, Widget> widgets = const {},
-      this.alignment,
-      this.padding,
-      this.margin,
-      this.backgroundColor,
-      this.boxDecoration,
-      this.textStyle,
-      this.display = DisplayLine.block,
-      this.renderNewLines = false}) {
+        Map<String, JSXStylesheet> stylesheet = const {},
+        Map<String, Widget> widgets = const {},
+        this.alignment,
+        this.padding,
+        this.margin,
+        this.backgroundColor,
+        this.boxDecoration,
+        this.textStyle,
+        this.textOverflow,
+        this.display = DisplayLine.block,
+        this.renderNewLines = false}) {
     if (allowedElements.isNotEmpty) {
       this.allowedElements.clear();
       this.allowedElements.addAll(allowedElements);
@@ -81,31 +85,57 @@ class JSX extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    stylesheet.addAll({
-      'body': JSXStylesheet(
-          textStyle: textStyle ??
-              TextStyle(
-                  color: Colors.black) //DefaultTextStyle.of(context).style
-          )
-    });
+  _JSX createState() => _JSX();
+}
 
-    RichText parsedText = jsxConverter.createElement(
-        html: text ?? '',
-        renderNewLines: renderNewLines,
-        customStylesheet: stylesheet,
-        widgets: widgetNodes);
+/// Transform Html text [String] into [RichText] object, combining dom elements with their respective [JSXStylesheet]
+class _JSX extends State<JSX> {
 
-    return Container(
-      margin: margin,
-      decoration: boxDecoration,
-      alignment: alignment,
-      padding: padding,
-      color: backgroundColor,
-      width: display == DisplayLine.block ? double.infinity : null,
+  Widget parsedRichText;
+
+  void parseRichText(){
+
+    // TODO implement test of "DefaultTextStyle.of(context).style" before calling it. its trowing errors
+    TextStyle inheritedStyle = /*DefaultTextStyle.of(context)?.style ?? */widget.textStyle ?? TextStyle(color: Colors.black);
+
+    if(widget.stylesheet.containsKey('*')){
+      widget.stylesheet['*'].textStyle = inheritedStyle.merge(widget.stylesheet['*'].textStyle);
+    } else {
+      widget.stylesheet.addAll({
+        '*': JSXStylesheet(
+            textStyle: widget.textStyle
+        )
+      });
+    }
+
+    RichText parsedText = widget.jsxConverter.createElement(
+        html: widget.text ?? '',
+        renderNewLines: widget.renderNewLines,
+        customStylesheet: widget.stylesheet,
+        widgets: widget.widgetNodes);
+
+    parsedRichText = Container(
+      margin: widget.margin,
+      decoration: widget.boxDecoration,
+      alignment: widget.alignment,
+      padding: widget.padding,
+      color: widget.backgroundColor,
+      width: widget.display == DisplayLine.block ? double.infinity : null,
       child: Wrap(
         children: [parsedText],
       ),
     );
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    parseRichText();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return parsedRichText;
   }
 }

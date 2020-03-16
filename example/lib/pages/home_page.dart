@@ -103,6 +103,9 @@ JSX(
                               )
                             },
                             stylesheet: {
+                              '*': JSXStylesheet(
+                                textStyle: TextStyle(color: Colors.black)
+                              ),
                               'code': JSXStylesheet(
                                 padding: EdgeInsets.all(10.0),
                                 margin: EdgeInsets.symmetric(vertical: 20.0)
